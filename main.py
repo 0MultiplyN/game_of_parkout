@@ -24,19 +24,19 @@ DUCKING1 = [pygame.image.load(os.path.join("Assets/Chic", "ChickenDuck1.png")),
            pygame.image.load(os.path.join("Assets/Chic", "ChickenDuck2.png"))]
 DEAD1 = pygame.image.load(os.path.join("Assets/Chic", "ChickenDead.png"))
 
-RUNNING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaRun1.png")),
-           pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaRun2.jpg"))]
-JUMPING2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaJump.png"))
-DUCKING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck1.jpg")),
-           pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck2.jpg"))]
-DEAD2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDie.jpg"))
-
 # RUNNING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaRun1.png")),
-#            pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaRun2.png"))]
+#            pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaRun2.jpg"))]
 # JUMPING2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaJump.png"))
-# DUCKING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck1.png")),
-#            pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck2.png"))]
+# DUCKING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck1.jpg")),
+#            pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck2.jpg"))]
 # DEAD2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDie.jpg"))
+
+RUNNING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaRun1.png")),
+           pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaRun2.png"))]
+JUMPING2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaJump.png"))
+DUCKING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck1.png")),
+           pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck2.png"))]
+DEAD2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaStart.png"))
 
 SMALL_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus1.png")),
                 pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus2.png")),
@@ -674,11 +674,11 @@ def menu(death_count,select_role):
             text4 = font.render("|", True, (30, 30, 0))
             text3 = font.render("Press    Key to use DinosaurRestart", True, (30, 30, 0))
             text5 = font.render("v", True, (30, 30, 0))
-            text6 = font.render("Press -> Key to use Alpapa", True, (30, 30, 0))
+            text6 = font.render("Press -> Key to use AlpapaRestart", True, (30, 30, 0))
             text = font.render("Press ESC for quit", True, (45, 20, 20))
             score = font.render("Your Score: " + str(points), True, (40, 40, 0))
             scoreRect = score.get_rect()
-            scoreRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 155)
+            scoreRect.center = (SCREEN_WIDTH // 2 + 5 , SCREEN_HEIGHT // 2 + 198)
             SCREEN.blit(score, scoreRect)
             textRect = text.get_rect()
             textRect2 = text2.get_rect()
@@ -689,26 +689,27 @@ def menu(death_count,select_role):
             textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 5)
             textRect2.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50 )
             textRect3.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 105 )
-            textRect4.center = (SCREEN_WIDTH // 2 - 158 , SCREEN_HEIGHT // 2 + 95 )
-            textRect5.center = (SCREEN_WIDTH // 2 - 158 , SCREEN_HEIGHT // 2 + 110 )
-            textRect6.center = (SCREEN_WIDTH // 2 - 15 , SCREEN_HEIGHT // 2 + 165 )
+            textRect4.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 95 )
+            textRect5.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 110 )
+            textRect6.center = (SCREEN_WIDTH // 2 -4  , SCREEN_HEIGHT // 2 + 155 )
             SCREEN.blit(text, textRect)
             SCREEN.blit(text2, textRect2)
             SCREEN.blit(text3, textRect3)
             SCREEN.blit(text4, textRect4)
             SCREEN.blit(text5, textRect5)
             SCREEN.blit(text6, textRect6)
-            SCREEN.blit(DEAD, (SCREEN_WIDTH // 2 - 20, SCREEN_HEIGHT // 2 - 177))
-            pygame.draw.rect(SCREEN, border_color,(280, 250, 540, 230), border_width)
+            SCREEN.blit(DEAD, (SCREEN_WIDTH // 2 - 7, SCREEN_HEIGHT // 2 - 177))
+            pygame.draw.rect(SCREEN, border_color,(280, 240, 561, 295), border_width)
         elif death_count > 0 and select_role == 1 :
             text2 = font.render("Press <- Key to use ChickenRestart", True, (30, 30, 0))
             text4 = font.render("|", True, (30, 30, 0))
             text3 = font.render("Press    Key to use DinosaurRestart", True, (30, 30, 0))
             text5 = font.render("v", True, (30, 30, 0))
+            text6 = font.render("Press -> Key to use AlpapaRestart", True, (30, 30, 0))
             text = font.render("Press ESC for quit", True, (45, 20, 20))
             score = font.render("Your Score: " + str(points), True, (40, 40, 0))
             scoreRect = score.get_rect()
-            scoreRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 155)
+            scoreRect.center = (SCREEN_WIDTH // 2 + 5 , SCREEN_HEIGHT // 2 + 198)
             SCREEN.blit(score, scoreRect)
             textRect = text.get_rect()
             textRect2 = text2.get_rect()
@@ -719,44 +720,48 @@ def menu(death_count,select_role):
             textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 5)
             textRect2.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50 )
             textRect3.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 105 )
-            textRect4.center = (SCREEN_WIDTH // 2 - 158 , SCREEN_HEIGHT // 2 + 95 )
-            textRect5.center = (SCREEN_WIDTH // 2 - 158 , SCREEN_HEIGHT // 2 + 110 )
-            textRect6.center = (SCREEN_WIDTH // 2 - 15 , SCREEN_HEIGHT // 2 + 165 )
+            textRect4.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 95 )
+            textRect5.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 110 )
+            textRect6.center = (SCREEN_WIDTH // 2 -4  , SCREEN_HEIGHT // 2 + 155 )
             SCREEN.blit(text, textRect)
             SCREEN.blit(text2, textRect2)
             SCREEN.blit(text3, textRect3)
             SCREEN.blit(text4, textRect4)
             SCREEN.blit(text5, textRect5)
             SCREEN.blit(text6, textRect6)
-            SCREEN.blit(DEAD1, (SCREEN_WIDTH // 2 - 20, SCREEN_HEIGHT // 2 - 177))
-            pygame.draw.rect(SCREEN, border_color,(280, 250, 540, 230), border_width)
+            SCREEN.blit(DEAD1, (SCREEN_WIDTH // 2 - 7, SCREEN_HEIGHT // 2 - 177))
+            pygame.draw.rect(SCREEN, border_color,(280, 240, 561, 295), border_width)   
         elif death_count > 0 and select_role == 2 :
             text2 = font.render("Press <- Key to use ChickenRestart", True, (30, 30, 0))
             text4 = font.render("|", True, (30, 30, 0))
             text3 = font.render("Press    Key to use DinosaurRestart", True, (30, 30, 0))
             text5 = font.render("v", True, (30, 30, 0))
+            text6 = font.render("Press -> Key to use AlpapaRestart", True, (30, 30, 0))
             text = font.render("Press ESC for quit", True, (45, 20, 20))
             score = font.render("Your Score: " + str(points), True, (40, 40, 0))
             scoreRect = score.get_rect()
-            scoreRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 155)
+            scoreRect.center = (SCREEN_WIDTH // 2 + 5 , SCREEN_HEIGHT // 2 + 198)
             SCREEN.blit(score, scoreRect)
             textRect = text.get_rect()
             textRect2 = text2.get_rect()
             textRect3 = text3.get_rect()
             textRect4 = text4.get_rect()
             textRect5 = text5.get_rect()
+            textRect6 = text6.get_rect()
             textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 5)
             textRect2.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50 )
             textRect3.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 105 )
-            textRect4.center = (SCREEN_WIDTH // 2 - 158 , SCREEN_HEIGHT // 2 + 95 )
-            textRect5.center = (SCREEN_WIDTH // 2 - 158 , SCREEN_HEIGHT // 2 + 110 )
+            textRect4.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 95 )
+            textRect5.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 110 )
+            textRect6.center = (SCREEN_WIDTH // 2 -4  , SCREEN_HEIGHT // 2 + 155 )
             SCREEN.blit(text, textRect)
             SCREEN.blit(text2, textRect2)
             SCREEN.blit(text3, textRect3)
             SCREEN.blit(text4, textRect4)
             SCREEN.blit(text5, textRect5)
-            SCREEN.blit(DEAD1, (SCREEN_WIDTH // 2 - 20, SCREEN_HEIGHT // 2 - 177))
-            pygame.draw.rect(SCREEN, border_color,(280, 250, 540, 230), border_width)
+            SCREEN.blit(text6, textRect6)
+            SCREEN.blit(DEAD2, (SCREEN_WIDTH // 2 - 7, SCREEN_HEIGHT // 2 - 200))
+            pygame.draw.rect(SCREEN, border_color,(280, 240, 561, 295), border_width) 
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
