@@ -9,12 +9,12 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-RUNNING = [pygame.image.load(os.path.join("Assets/Dino", "DinoRun1.png")),
-           pygame.image.load(os.path.join("Assets/Dino", "DinoRun2.png"))]
-JUMPING = pygame.image.load(os.path.join("Assets/Dino", "DinoJump.png"))
-DUCKING = [pygame.image.load(os.path.join("Assets/Dino", "DinoDuck1.png")),
-           pygame.image.load(os.path.join("Assets/Dino", "DinoDuck2.png"))]
-DEAD = pygame.image.load(os.path.join("Assets/Dino", "DinoDead.png"))
+RUNNING = [pygame.image.load(os.path.join("Assets/turtle", "turtleRun1.png")),
+           pygame.image.load(os.path.join("Assets/turtle", "turtleRun2.png"))]
+JUMPING = pygame.image.load(os.path.join("Assets/turtle", "turtleJump.png"))
+DUCKING = [pygame.image.load(os.path.join("Assets/turtle", "turtleDuck1.png")),
+           pygame.image.load(os.path.join("Assets/turtle", "turtleDuck2.png"))]
+DEAD = pygame.image.load(os.path.join("Assets/turtle", "turtleDead.png"))
 
 STARTING = pygame.image.load(os.path.join("Assets/Dino", "DinoStart.png"))
 RUNNING1 = [pygame.image.load(os.path.join("Assets/Chic", "ChickenRun1.png")),
@@ -453,16 +453,37 @@ def main(select_role):
             obstacle.update()
             if select_role == 0 :
                 if player.dino_rect.colliderect(obstacle.rect):
+                    pygame.draw.rect(SCREEN, (255,0,0) , player.dino_rect , 2 )
+                    background()
+                    cloud.draw(SCREEN)
+                    cloud.update()
+                    score()
+                    clock.tick(30)
+                    pygame.display.update()
                     pygame.time.delay(2000)
                     death_count += 1
                     menu(death_count,select_role)
             elif select_role == 1 :
                 if player.chic_rect.colliderect(obstacle.rect):
+                    pygame.draw.rect(SCREEN, (255,0,0) , player.chic_rect , 2 )
+                    background()
+                    cloud.draw(SCREEN)
+                    cloud.update()
+                    score()
+                    clock.tick(30)
+                    pygame.display.update()
                     pygame.time.delay(2000)
                     death_count += 1
                     menu(death_count,select_role)
             elif select_role == 2 :
                 if player.alpa_rect.colliderect(obstacle.rect):
+                    pygame.draw.rect(SCREEN, (255,0,0) , player.alpa_rect , 2 )
+                    background()
+                    cloud.draw(SCREEN)
+                    cloud.update()
+                    score()
+                    clock.tick(30)
+                    pygame.display.update()
                     pygame.time.delay(2000)
                     death_count += 1
                     menu(death_count,select_role)
