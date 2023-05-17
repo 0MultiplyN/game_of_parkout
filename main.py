@@ -8,7 +8,13 @@ pygame.init()
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
+jumpsnd = pygame.mixer.Sound("Assets/Music/jump.mp3")
+hitsnd = pygame.mixer.Sound("Assets/Music/hit.mp3")
+deadsnd = pygame.mixer.Sound("Assets/Music/start_02.mp3")
+jumpsnd.set_volume(0.55)
+hitsnd.set_volume(0.55)
+deadsnd.set_volume(0.55)
+# "Assets/turtle"
 RUNNING = [pygame.image.load(os.path.join("Assets/turtle", "turtleRun1.png")),
            pygame.image.load(os.path.join("Assets/turtle", "turtleRun2.png"))]
 JUMPING = pygame.image.load(os.path.join("Assets/turtle", "turtleJump.png"))
@@ -40,10 +46,15 @@ DEAD2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaStart.png"))
 
 SMALL_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus1.png")),
                 pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus2.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus3.png"))]
+                pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus3.png")),
+                pygame.image.load(os.path.join("Assets/Pineapple", "small1.png")),
+                pygame.image.load(os.path.join("Assets/Pineapple", "small2.png"))]
 LARGE_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus1.png")),
                 pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus2.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus3.png"))]
+                pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus3.png")),
+                pygame.image.load(os.path.join("Assets/Pineapple", "big1.png")),
+                pygame.image.load(os.path.join("Assets/Pineapple", "big2.png"))]
+
 
 BIRD = [pygame.image.load(os.path.join("Assets/Bird", "Bird1.png")),
         pygame.image.load(os.path.join("Assets/Bird", "Bird2.png"))]
@@ -87,10 +98,12 @@ class Dinosaur:
             self.step_index = 0
 
         if userInput[pygame.K_UP] and not self.dino_jump:
+            jumpsnd.play()
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
         elif userInput[pygame.K_DOWN] and not self.dino_jump:
+            deadsnd.play()
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
@@ -159,10 +172,12 @@ class Chicken:
             self.step_index = 0
 
         if userInput[pygame.K_UP] and not self.chic_jump:
+            jumpsnd.play()
             self.chic_duck = False
             self.chic_run = False
             self.chic_jump = True
         elif userInput[pygame.K_DOWN] and not self.chic_jump:
+            deadsnd.play()
             self.chic_duck = True
             self.chic_run = False
             self.chic_jump = False
@@ -231,10 +246,12 @@ class Alpaca:
             self.step_index = 0
 
         if userInput[pygame.K_UP] and not self.alpa_jump:
+            jumpsnd.play() 
             self.alpa_duck = False
             self.alpa_run = False
             self.alpa_jump = True
         elif userInput[pygame.K_DOWN] and not self.alpa_jump:
+            deadsnd.play() 
             self.alpa_duck = True
             self.alpa_run = False
             self.alpa_jump = False
@@ -304,14 +321,14 @@ class Obstacle:
 
 class SmallCactus(Obstacle):
     def __init__(self, image):
-        self.type = random.randint(0, 2)
+        self.type = random.randint(0, 4)
         super().__init__(image, self.type)
         self.rect.y = 325
 
 
 class LargeCactus(Obstacle):
     def __init__(self, image):
-        self.type = random.randint(0, 2)
+        self.type = random.randint(0, 4)
         super().__init__(image, self.type)
         self.rect.y = 300
 
@@ -460,6 +477,7 @@ def main(select_role):
                     score()
                     clock.tick(30)
                     pygame.display.update()
+                    hitsnd.play()
                     pygame.time.delay(2000)
                     death_count += 1
                     menu(death_count,select_role)
@@ -472,6 +490,7 @@ def main(select_role):
                     score()
                     clock.tick(30)
                     pygame.display.update()
+                    hitsnd.play()
                     pygame.time.delay(2000)
                     death_count += 1
                     menu(death_count,select_role)
@@ -484,6 +503,7 @@ def main(select_role):
                     score()
                     clock.tick(30)
                     pygame.display.update()
+                    hitsnd.play()
                     pygame.time.delay(2000)
                     death_count += 1
                     menu(death_count,select_role)
