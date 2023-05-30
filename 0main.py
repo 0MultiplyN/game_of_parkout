@@ -3,7 +3,6 @@ import os
 import random
 import sys
 pygame.init()
-pygame.display.set_caption("Pineapple_Surfer")
 
 # Global Constants
 SCREEN_HEIGHT = 600
@@ -44,17 +43,15 @@ JUMPING2 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaJump.png"))
 DUCKING2 = [pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck1.png")),
            pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDuck2.png"))]
            
-DEAD02 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaDead.png"))
-scaled_width = 2 * DEAD02.get_width()  # 原始寬度的兩倍
-scaled_height = 2 * DEAD02.get_height()  # 原始高度的兩倍
-DEAD2 = pygame.transform.scale(DEAD02, (scaled_width, scaled_height))
+DEAD02 = pygame.image.load(os.path.join("Assets/Alpaca", "AlpacaStart.png"))
 
-# scaled_width0 = 2 * DEAD0.get_width()  # 原始寬度的兩倍
-# scaled_height0 = 2 * DEAD0.get_height()  # 原始高度的兩倍
-# DEAD = pygame.transform.scale(DEAD0, (scaled_width, scaled_height))
-# DEAD2 = pygame.image.load(os.path.join("Assets/Alpaca", "adead.jpg"))
-POBJ = pygame.image.load(os.path.join("Assets/Pineapple", "Findi.png"))
-pygame.display.set_icon(POBJ)
+image_path = os.path.join("C:/computer_project/compGame/Assets/Pineapple", "Findi.png")
+if os.path.exists(image_path):
+    print("檔案存在")
+else:
+    print("檔案不存在")
+POBJ = pygame.image.load(image_path)
+
 
 SMALL_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus1.png")),
                 pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus2.png")),
@@ -480,7 +477,7 @@ def main(select_role):
     pygame.event.get()
     pygame.event.clear()
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
-    
+    game_speed = 20
     run = True
     clock = pygame.time.Clock()
     cloud = Cloud()
@@ -492,13 +489,10 @@ def main(select_role):
     death_count = 0
     if select_role == 0:
         player = Dinosaur()
-        game_speed = 8
     elif select_role == 1:
         player = Chicken()
-        game_speed = 18
     else:
         player = Alpaca()
-        game_speed = 25
     
 
     def score():
@@ -754,7 +748,7 @@ def menu(death_count,select_role):
         if death_count == 0:
             text2 = font.render("Press <- Key to use Chicken", True, (30, 30, 0))
             text4 = font.render("|", True, (30, 30, 0))
-            text3 = font.render("Press    Key to use Turtle", True, (30, 30, 0))
+            text3 = font.render("Press    Key to use Dinosaur", True, (30, 30, 0))
             text5 = font.render("v", True, (30, 30, 0))
             text = font.render("Press ESC for quit", True, (45, 20, 20))
             text6 = font.render("Press -> Key to use Alpapa", True, (30, 30, 0))
@@ -766,7 +760,7 @@ def menu(death_count,select_role):
             textRect6 = text6.get_rect()
             textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 5)
             textRect2.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50 )
-            textRect3.center = (SCREEN_WIDTH // 2 - 21, SCREEN_HEIGHT // 2 + 105 )
+            textRect3.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 105 )
             textRect4.center = (SCREEN_WIDTH // 2 - 105, SCREEN_HEIGHT // 2 + 95 )
             textRect5.center = (SCREEN_WIDTH // 2 - 105 , SCREEN_HEIGHT // 2 + 110 )
             textRect6.center = (SCREEN_WIDTH // 2 - 15 , SCREEN_HEIGHT // 2 + 165 )
@@ -795,7 +789,7 @@ def menu(death_count,select_role):
         elif death_count > 0 and select_role == 0 :
             text2 = font.render("Press <- Key to use ChickenRestart", True, (30, 30, 0))
             text4 = font.render("|", True, (30, 30, 0))
-            text3 = font.render("Press    Key to use TurtleRestart", True, (30, 30, 0))
+            text3 = font.render("Press    Key to use DinosaurRestart", True, (30, 30, 0))
             text5 = font.render("v", True, (30, 30, 0))
             text6 = font.render("Press -> Key to use AlpapaRestart", True, (30, 30, 0))
             text = font.render("Press ESC for quit", True, (45, 20, 20))
@@ -811,7 +805,7 @@ def menu(death_count,select_role):
             textRect6 = text6.get_rect()
             textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 5)
             textRect2.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50 )
-            textRect3.center = (SCREEN_WIDTH // 2 - 21, SCREEN_HEIGHT // 2 + 105 )
+            textRect3.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 105 )
             textRect4.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 95 )
             textRect5.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 110 )
             textRect6.center = (SCREEN_WIDTH // 2 -4  , SCREEN_HEIGHT // 2 + 155 )
@@ -821,12 +815,12 @@ def menu(death_count,select_role):
             SCREEN.blit(text4, textRect4)
             SCREEN.blit(text5, textRect5)
             SCREEN.blit(text6, textRect6)
-            SCREEN.blit(DEAD, (SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 - 210))
+            SCREEN.blit(DEAD, (SCREEN_WIDTH // 2 - 7, SCREEN_HEIGHT // 2 - 177))
             pygame.draw.rect(SCREEN, border_color,(280, 240, 561, 295), border_width)
         elif death_count > 0 and select_role == 1 :
             text2 = font.render("Press <- Key to use ChickenRestart", True, (30, 30, 0))
             text4 = font.render("|", True, (30, 30, 0))
-            text3 = font.render("Press    Key to use TurtleRestart", True, (30, 30, 0))
+            text3 = font.render("Press    Key to use DinosaurRestart", True, (30, 30, 0))
             text5 = font.render("v", True, (30, 30, 0))
             text6 = font.render("Press -> Key to use AlpapaRestart", True, (30, 30, 0))
             text = font.render("Press ESC for quit", True, (45, 20, 20))
@@ -842,7 +836,7 @@ def menu(death_count,select_role):
             textRect6 = text6.get_rect()
             textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 5)
             textRect2.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50 )
-            textRect3.center = (SCREEN_WIDTH // 2 - 24 , SCREEN_HEIGHT // 2 + 105 )
+            textRect3.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 105 )
             textRect4.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 95 )
             textRect5.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 110 )
             textRect6.center = (SCREEN_WIDTH // 2 -4  , SCREEN_HEIGHT // 2 + 155 )
@@ -857,7 +851,7 @@ def menu(death_count,select_role):
         elif death_count > 0 and select_role == 2 :
             text2 = font.render("Press <- Key to use ChickenRestart", True, (30, 30, 0))
             text4 = font.render("|", True, (30, 30, 0))
-            text3 = font.render("Press    Key to use TurtleRestart", True, (30, 30, 0))
+            text3 = font.render("Press    Key to use DinosaurRestart", True, (30, 30, 0))
             text5 = font.render("v", True, (30, 30, 0))
             text6 = font.render("Press -> Key to use AlpapaRestart", True, (30, 30, 0))
             text = font.render("Press ESC for quit", True, (45, 20, 20))
@@ -873,7 +867,7 @@ def menu(death_count,select_role):
             textRect6 = text6.get_rect()
             textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - 5)
             textRect2.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50 )
-            textRect3.center = (SCREEN_WIDTH // 2 - 21 , SCREEN_HEIGHT // 2 + 105 )
+            textRect3.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 105 )
             textRect4.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 95 )
             textRect5.center = (SCREEN_WIDTH // 2 - 155 , SCREEN_HEIGHT // 2 + 110 )
             textRect6.center = (SCREEN_WIDTH // 2 -4  , SCREEN_HEIGHT // 2 + 155 )
@@ -883,7 +877,7 @@ def menu(death_count,select_role):
             SCREEN.blit(text4, textRect4)
             SCREEN.blit(text5, textRect5)
             SCREEN.blit(text6, textRect6)
-            SCREEN.blit(DEAD2, (SCREEN_WIDTH // 2 - 82, SCREEN_HEIGHT // 2 - 260))
+            SCREEN.blit(DEAD2, (SCREEN_WIDTH // 2 - 7, SCREEN_HEIGHT // 2 - 200))
             pygame.draw.rect(SCREEN, border_color,(280, 240, 561, 295), border_width) 
         pygame.display.update()
         for event in pygame.event.get():
